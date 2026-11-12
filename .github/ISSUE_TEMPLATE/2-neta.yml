@@ -1,0 +1,59 @@
+name: ネタの追加・修正
+description: 回収項目（ネタ）を1つ追加、または内容を直す
+title: "[ネタ] "
+labels: ["ネタ", "AIが作って人間が確認"]
+projects: ["Youkin06/6"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        数字・条件・場所は、**人間が大学の公式情報で確認したものだけ**を書いてください。
+        未確認のものは「【要確認】」と書き、AI に推測で埋めさせないでください。
+  - type: input
+    id: title
+    attributes:
+      label: ネタのタイトル
+      placeholder: ジムを使い倒す
+    validations:
+      required: true
+  - type: textarea
+    id: facts
+    attributes:
+      label: 事実（制度・設備の内容、料金、条件、場所）
+      placeholder: |
+        - 場所：【要確認】
+        - 利用条件：【要確認】
+    validations:
+      required: true
+  - type: textarea
+    id: amount
+    attributes:
+      label: 回収額とその計算
+      placeholder: 市販のジム月額 ○円 × ○か月 ＝ 年 ○円（週2回×30週の場合）
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: 出典（URL）と確認日
+      placeholder: https://... （2026/11/○ 確認、確認した人：○○）
+    validations:
+      required: true
+  - type: textarea
+    id: ochi
+    attributes:
+      label: オチ・見せ方
+      description: 空欄なら AI が下書きし、人間が確認する
+  - type: textarea
+    id: image
+    attributes:
+      label: 画像
+      description: 用意した人、撮影か素材か、利用条件。写っている人の許可は取ったか
+      value: 未定
+  - type: checkboxes
+    id: check
+    attributes:
+      label: 人間による確認
+      options:
+        - label: 数字・条件を公式情報で確認した
+        - label: 画像の利用条件を確認した

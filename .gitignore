@@ -1,0 +1,15 @@
+# 依存・ビルド結果
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# 秘密の値
+.env*
+!.env.example
+
+# 本名が載った資料をコミットしない
+*.pdf
+
+.DS_Store

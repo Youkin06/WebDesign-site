@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# main への直接 push を止める。変更はプルリクエストで main に入れる（AGENTS.md 参照）。
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "main への直接 push は禁止です。issue-<番号> ブランチからプルリクエストを出してください。" >&2
+    exit 1
+  fi
+done
+exit 0

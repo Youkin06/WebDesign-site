@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: package.json があるか
+        id: pkg
+        run: |
+          if [ -f package.json ]; then echo "exists=true" >> "$GITHUB_OUTPUT"; else echo "exists=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-node@v4
+        if: steps.pkg.outputs.exists == 'true'
+        with:
+          node-version: 24
+          cache: npm
+      - if: steps.pkg.outputs.exists == 'true'
+        run: npm ci
+      - if: steps.pkg.outputs.exists == 'true'
+        run: ./scripts/task.sh check
