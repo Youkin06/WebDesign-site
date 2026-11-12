@@ -49,6 +49,28 @@ set_status() {
 }
 
 cmd="${1:-}"; [ -n "$cmd" ] || usage
+
+# 初回だけ：main への直接 push を止める pre-push フックを有効にする
+if [ "$(git -C "$ROOT" config --get core.hooksPath || true)" != ".githooks" ]; then
+  git -C "$ROOT" config core.hooksPath .githooks
+  echo "pre-push フックを有効にしました（main への直接 push を止めます）。"
+fi
+
+# Project のカードを動かすコマンドは、gh に project の権限が必要
+case "$cmd" in
+  new|start|status|pr|merge|done)
+    if ! gh auth status 2>&1 | grep -q "'project'"; then
+      cat >&2 <<MSG
+gh に GitHub Project を操作する権限（project）がありません。
+次のコマンドを実行し、開いたブラウザで「Authorize」を押してから、もう一度やり直してください。
+
+  gh auth refresh -s project
+MSG
+      exit 1
+    fi
+    ;;
+esac
+
 case "$cmd" in
   find)
     keyword="${2:?キーワードを指定してください}"

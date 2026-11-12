@@ -170,7 +170,7 @@ Claude Code と Codex のどちらで作業しても、同じルール・同じ�
 
 ### ぶつからないための決まり
 
-- main に直接コミット・push しない（`./scripts/setup.sh` で入る pre-push フックが止める）
+- main に直接コミット・push しない（`task.sh` が自動で有効にする pre-push フックと、GitHub 側の main 保護が止める）
 - 自分の worktree の外のファイルを変えない。ほかの worktree を触らない
 - 次の**共有ファイル**は、それだけを変える専用の issue でしか変えない
   - `AGENTS.md`、`CLAUDE.md`、`package.json`・`package-lock.json`、Tailwind のテーマ設定、全ページ共通のレイアウト（ヘッダー・フッター）、Sveltia CMS の設定、`.github/` と `scripts/`
@@ -180,10 +180,10 @@ Claude Code と Codex のどちらで作業しても、同じルール・同じ�
 
 ### はじめに一度だけ
 
-```sh
-./scripts/setup.sh   # pre-push フックを有効にする
-gh auth refresh -s project   # gh で Project を操作する権限を足す
-```
+人間が手で打つコマンドはない。AI が初めて `./scripts/task.sh` を使ったときに、次が起きる。
+
+- pre-push フックは自動で有効になる
+- gh に Project を操作する権限がなければ、`task.sh` が止まって `gh auth refresh -s project` を実行するよう表示する。AI はそのコマンドを実行し、人間に「開いたブラウザで Authorize を押してください」と頼む。これは本人の GitHub アカウントの許可なので、人間にしかできない
 
 ## タスク管理（GitHub Projects）
 
