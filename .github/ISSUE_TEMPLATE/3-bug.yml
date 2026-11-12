@@ -1,0 +1,36 @@
+name: バグ
+description: 表示崩れ、リンク切れ、動かないところ
+title: "[バグ] "
+labels: ["バグ", "AIが作って人間が確認"]
+projects: ["Youkin06/6"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 何が起きたか
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 本来どうなるべきか
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現手順
+      placeholder: |
+        1. スマホで項目一覧を開く
+        2. 一番下までスクロールする
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 端末・ブラウザ・画面幅
+      placeholder: iPhone 15 / Safari / 縦画面
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: スクリーンショット

@@ -1,0 +1,29 @@
+name: 人間の作業・判断
+description: 事実の確認、デザインの決定、写真撮影、アカウント作成、技術の決定など、人間しかできないこと
+title: "[人間] "
+labels: ["人間がやる"]
+projects: ["Youkin06/6"]
+body:
+  - type: markdown
+    attributes:
+      value: AI はこの issue に手を出しません。決まったら結果をコメントに書き、関係する実装 issue にリンクしてください。
+  - type: textarea
+    id: what
+    attributes:
+      label: 決めること・やること
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: 選択肢・判断材料
+  - type: textarea
+    id: blocks
+    attributes:
+      label: これが決まると進む issue
+      placeholder: "#12、#15"
+  - type: input
+    id: due
+    attributes:
+      label: いつまでに
+      placeholder: 11/22（モック完成）まで

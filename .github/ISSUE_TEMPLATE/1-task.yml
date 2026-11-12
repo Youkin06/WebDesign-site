@@ -1,0 +1,61 @@
+name: 実装タスク
+description: 画面・機能・設定など、コードを書く作業
+title: "[実装] "
+labels: ["実装"]
+projects: ["Youkin06/6"]
+body:
+  - type: dropdown
+    id: who
+    attributes:
+      label: 誰が手を動かすか
+      description: 選んだものと同じラベル（AIがやる／人間がやる／AIが作って人間が確認）も付けてください
+      options:
+        - AIが作って人間が確認
+        - AIがやる
+        - 人間がやる
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: 目的
+      description: なぜこの作業が必要か。どのページ・どの利用者のためか
+    validations:
+      required: true
+  - type: textarea
+    id: todo
+    attributes:
+      label: やること
+      placeholder: |
+        - [ ] 項目一覧ページにカードを並べる
+        - [ ] スマホでは1列、PCでは3列にする
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: 終わりの条件
+      description: 何ができていれば完了か。人間が確かめられる形で書く
+      placeholder: |
+        - スマホ幅（375px）とPC幅で横スクロールが出ない
+        - カードを押すと項目詳細に移る
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 触る予定のファイル・範囲
+      description: ほかの進行中の issue と重ならないかを見るために書く。共有ファイル（AGENTS.md 参照）を触るなら明記する
+      placeholder: app/items/page.tsx、components/item-card.tsx
+    validations:
+      required: true
+  - type: textarea
+    id: human
+    attributes:
+      label: 人間が決めること・用意するもの
+      description: AI では決められないこと（デザイン、文言、事実、画像、アカウントなど）。なければ「なし」
+      value: なし
+  - type: textarea
+    id: refs
+    attributes:
+      label: 参考（Figma、関連 issue など）
